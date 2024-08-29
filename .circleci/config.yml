@@ -53,15 +53,11 @@ jobs:
     description: Publish to npm
     steps:
       - checkout
-      - node/install-packages
       - run:
-          name: Login to npm
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
-      - run:
-          name: Publish to npm
-          command: npm publish
-          environment: 
-            NPM_TOKEN: $NPM_TOKEN
+          name: Publish to NPM
+          command: |
+            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+            npm publish
 workflows:
   build_app:
     jobs:
