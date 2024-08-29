@@ -60,7 +60,8 @@ jobs:
       - run:
           name: Publish to npm
           command: npm publish
-          environment: $NPM_TOKEN
+          environment: 
+            NPM_TOKEN: $NPM_TOKEN
 workflows:
   build_app:
     jobs:
