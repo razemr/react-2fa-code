@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState, useMemo } from "react";
 import classnames from "classnames";
 import { type AuthCodeProps } from "./types";
