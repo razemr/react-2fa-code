@@ -16,12 +16,29 @@ jobs:
       - run:
           name: Lint code
           command: npm run lint:fix
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+            - package-lock.json
+            - package.json
+            - src
+            - .eslint.config.mjs
+            - .prettierrc.js
+            - .gitignore
+            - .npmignore
+            - .nvmrc
+            - .circleci
+            - rollup.config.mjs
+            - commitlint.config.js
+            - tsconfig.json
+            - .husky
   run_tests:
     executor: node/default
     description: Run tests
     steps:
-      - checkout
-      - node/install-packages
+      - attach_workspace:
+          at: .
       - run:
           name: Run tests
           command: npm run test
@@ -29,8 +46,8 @@ jobs:
     executor: node/default
     description: Build
     steps:
-      - checkout
-      - node/install-packages
+      - attach_workspace:
+          at: .
       - run:
           name: Build
           command: npm run build
@@ -47,7 +64,9 @@ jobs:
             git config --global user.name $GIT_NAME
       - run:
           name: Run release
-          command: npm run release
+          command: |
+            npm run release
+            git push --follow-tags "https://${GH_TOKEN}@github.com/razemr/react-2fa-code.git" main
   publish_to_npm:
     executor: node/default
     description: Publish to npm
@@ -55,10 +74,18 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Publish to NPM
+          name: Check if npm version is the same and publish to npm
           command: |
-            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-            npm publish
+            CURRENT_VERSION=$(npm show react-2fa-code version)
+            LOCAL_VERSION=$(node -pe "require('./package.json').version")
+
+            if [ "$CURRENT_VERSION" != "$LOCAL_VERSION" ]; then
+              echo "Versions are different. Publishing to npm."
+              npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+              npm publish
+            else
+              echo "Versions are the same. Skipping npm publish."
+            fi
 workflows:
   build_app:
     jobs:
@@ -69,9 +96,6 @@ workflows:
       - build:
           requires:
             - run_tests
-      - run_release:
-          requires:
-            - build
       - publish_to_npm:
           requires:
-            - run_release
+            - build

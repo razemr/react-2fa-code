@@ -1,5 +1,5 @@
 
-# react-verification-code
+# react-2fa-code
 
 React component for inputing 2FA and other verification codes.
 
@@ -7,7 +7,7 @@ React component for inputing 2FA and other verification codes.
 ## Installation
 
 ```bash
-  npm install react-verification-code
+  npm install react-2fa-code
 ```
     
 ## Usage
@@ -15,10 +15,10 @@ React component for inputing 2FA and other verification codes.
 It's pretty easy to get it up and running!
 
 ```javascript
-import VerificationCode from 'react-verification-code'
+import AuthCode from 'react-2fa-code'
 
 function App() {
-  return <VerificationCode />
+  return <AuthCode />
 }
 ```
 
@@ -54,7 +54,7 @@ That's it! See API reference for props and default configuration.
 
 ## License
 
-[MIT](https://github.com/razemr/react-verification-code/blob/main/LICENSE)
+[MIT](https://github.com/razemr/react-2fa-code/blob/main/LICENSE)
 
 
 ## Authors

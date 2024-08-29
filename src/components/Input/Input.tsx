@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import classnames from "classnames";
-import { useVerificationCodeContext } from "../../hooks";
+import { useAuthCodeContext } from "../../hooks";
 import { type InputProps } from "./types";
 
 import "./styles.css";
@@ -14,7 +14,7 @@ const Input: React.FC<InputProps> = ({
   onPaste,
   onFocus,
 }) => {
-  const { password, inputClassName } = useVerificationCodeContext();
+  const { password, inputClassName } = useAuthCodeContext();
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const Input: React.FC<InputProps> = ({
       disabled={!selected}
       maxLength={1}
       type={password ? "password" : "text"}
-      className={classnames("rvc__input", inputClassName)}
+      className={classnames("rac__input", inputClassName)}
       aria-selected={selected}
       onChange={handleChange}
       onKeyDown={handleKeyDown}

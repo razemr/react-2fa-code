@@ -1,4 +1,4 @@
-export interface VerificationCodeProps {
+export interface AuthCodeProps {
   value?: string;
   length?: number;
   password?: boolean;

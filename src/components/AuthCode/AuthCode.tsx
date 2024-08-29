@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useMemo } from "react";
 import classnames from "classnames";
-import { type VerificationCodeProps } from "./types";
+import { type AuthCodeProps } from "./types";
 import Input from "../Input";
-import { VerificationCodeContext } from "../../context";
+import { AuthCodeContext } from "../../context";
 import { isValidValue } from "./utils";
 
 import "./styles.css";
 
-const VerificationCode: React.FC<VerificationCodeProps> = ({
+const AuthCode: React.FC<AuthCodeProps> = ({
   value = "",
   length = 4,
   password = false,
@@ -77,13 +77,13 @@ const VerificationCode: React.FC<VerificationCodeProps> = ({
   }, [internalValue, length]);
 
   return (
-    <VerificationCodeContext.Provider
+    <AuthCodeContext.Provider
       value={{
         password,
         inputClassName,
       }}
     >
-      <div className={classnames("rvc_container", containerClassName)}>
+      <div className={classnames("rac_container", containerClassName)}>
         {Array.from({ length }, (_, i) => (
           <Input
             key={i}
@@ -97,8 +97,8 @@ const VerificationCode: React.FC<VerificationCodeProps> = ({
           />
         ))}
       </div>
-    </VerificationCodeContext.Provider>
+    </AuthCodeContext.Provider>
   );
 };
 
-export default VerificationCode;
+export default AuthCode;

@@ -2,18 +2,18 @@ import React from "react";
 import { act, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
-import VerificationCode from "./VerificationCode";
-import { VerificationCodeProps } from "./types";
+import AuthCode from "./AuthCode";
+import { AuthCodeProps } from "./types";
 
-describe("Verification Code", () => {
+describe("Auth Code", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   const renderComponent = (
-    props: VerificationCodeProps = {}
+    props: AuthCodeProps = {}
   ): HTMLInputElement[] => {
-    render(<VerificationCode {...props} />);
+    render(<AuthCode {...props} />);
     return screen.getAllByRole("textbox");
   };
 
@@ -145,7 +145,7 @@ describe("Verification Code", () => {
     it("should trigger onChange", async () => {
       const handleOnChangeMock = jest.fn();
 
-      render(<VerificationCode onChange={handleOnChangeMock} />);
+      render(<AuthCode onChange={handleOnChangeMock} />);
 
       await userEvent.type(screen.getAllByRole("textbox")[0]!, "12");
 
@@ -157,7 +157,7 @@ describe("Verification Code", () => {
     it("should trigger onComplete", async () => {
       const handleOnCompleteMock = jest.fn();
 
-      render(<VerificationCode onComplete={handleOnCompleteMock} />);
+      render(<AuthCode onComplete={handleOnCompleteMock} />);
 
       await userEvent.type(screen.getAllByRole("textbox")[0]!, "1234");
 
@@ -181,7 +181,7 @@ describe("Verification Code", () => {
     });
 
     it("should mask inputs ", async () => {
-      render(<VerificationCode password={true} />);
+      render(<AuthCode password={true} />);
 
       const inputs = document.querySelectorAll("input");
 

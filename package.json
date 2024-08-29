@@ -1,6 +1,6 @@
 {
   "name": "react-2fa-code",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "React component for inputing 2FA and other verification codes.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -41,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/razemr/react-verification-code.git"
+    "url": "git+https://github.com/razemr/react-2fa-code.git"
   },
   "keywords": [
     "otp",
@@ -53,9 +53,9 @@
   "author": "Ramone Graham",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/razemr/react-verification-code/issues"
+    "url": "https://github.com/razemr/react-2fa-code/issues"
   },
-  "homepage": "https://github.com/razemr/react-verification-code#readme",
+  "homepage": "https://github.com/razemr/react-2fa-code#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",

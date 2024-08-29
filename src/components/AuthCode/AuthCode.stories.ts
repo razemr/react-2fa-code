@@ -1,8 +1,8 @@
-import VerificationCode from "./VerificationCode";
+import AuthCode from "./AuthCode";
 
 export default {
-  title: "react-verification-code",
-  component: VerificationCode,
+  title: "react-2fa-code",
+  component: AuthCode,
   parameters: {
     layout: "centered",
   },
