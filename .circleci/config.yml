@@ -29,6 +29,8 @@ jobs:
     executor: node/default
     description: Build
     steps:
+      - checkout
+      - node/install-packages
       - run:
           name: Build
           command: npm run build
