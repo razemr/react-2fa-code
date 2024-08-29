@@ -22,7 +22,6 @@ jobs:
             - node_modules
             - package-lock.json
             - package.json
-            - src
             - .eslintrc.js
             - .prettierrc.js
             - .gitignore
