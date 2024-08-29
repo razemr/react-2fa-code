@@ -85,6 +85,7 @@ jobs:
               npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
               npm publish
             else
+              echo "Current version: $CURRENT_VERSION. Local version: $LOCAL_VERSION."
               echo "Versions are the same. Skipping npm publish."
             fi
 workflows:
