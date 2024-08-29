@@ -1,0 +1,66 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.0.2
+
+jobs:
+  lint_code:
+    executor: node/default
+    description: Lint code
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Lint code
+          command: npm run lint:fix
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+            - package-lock.json
+            - package.json
+            - src
+            - .eslintrc.js
+            - .prettierrc.js
+            - .gitignore
+            - .npmignore
+            - .nvmrc
+            - .circleci
+            - rollup.config.mjs
+            - commitlint.config.js
+            - tsconfig.json
+            - .husky
+  run_tests:
+    executor: node/default
+    description: Run tests
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run tests
+          command: npm run test
+  build:
+    executor: node/default
+    description: Build
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Build
+          command: npm run build
+workflows:
+  build_app:
+    jobs:
+      - lint_code
+      - run_tests:
+          requires:
+            - lint_code
+      - build:
+          requires:
+            - run_tests
+      - publish_to_npm:
+          requires:
+            - build
