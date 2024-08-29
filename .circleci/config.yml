@@ -61,6 +61,3 @@ workflows:
       - build:
           requires:
             - run_tests
-      - publish_to_npm:
-          requires:
-            - build

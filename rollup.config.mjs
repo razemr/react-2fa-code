@@ -36,9 +36,7 @@ export default [
       terser({
         keep_classnames: true
       }),
-      visualizer({
-        open: true
-      }),
+      visualizer(),
     ],
     external: ["react", "react-dom", "react/jsx-runtime"],
   },
