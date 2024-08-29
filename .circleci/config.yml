@@ -75,9 +75,6 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Login to npm
-          command: npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-      - run:
           name: Check if npm version is the same and publish to npm
           command: |
             CURRENT_VERSION=$(npm show react-2fa-code version)
@@ -85,6 +82,7 @@ jobs:
 
             if [ "$CURRENT_VERSION" != "$LOCAL_VERSION" ]; then
               echo "Versions are different. Publishing to npm."
+              npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
               npm publish
             else
               echo "Versions are the same. Skipping npm publish."
