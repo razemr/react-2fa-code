@@ -53,6 +53,7 @@ jobs:
     description: Publish to npm
     steps:
       - checkout
+      - node/install-packages
       - run:
           name: Publish to NPM
           command: |
