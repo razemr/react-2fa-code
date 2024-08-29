@@ -19,6 +19,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
+            - __mocks__
             - node_modules
             - package-lock.json
             - package.json
